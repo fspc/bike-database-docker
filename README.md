@@ -24,7 +24,7 @@ docker run -d -p 3000:3000 --name=bike-database" bikebike/bikedatabase
 
 ##Password
 
-Password is *password* for **staff@freeridepgh.org** and **volunteer@freeridepgh.org**.
+Password is **Coming Soon** for **Coming Soon** and **Coming Soon**.
 
 
 ##How to test/develop inside the running container process 
