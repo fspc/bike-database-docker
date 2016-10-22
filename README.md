@@ -1,13 +1,13 @@
-#BikeBinder
+##Bike Database##
 
-**BikeBike Docker Container Image for BikeBinder**
+**BikeBike Docker Container Image for Bike Database**
 
-BikeBinder is [Free Rides](http://freeridepgh.org/) Inventory System [application](https://github.com/FreeRidePGH/BikeBinder).
+The [Bikes and Clients database](https://github.com/Loos/bike-database) is used by [Recyclery](http://therecyclery.org/) staff and volunteers to track bikes and by our partner organizations to request a free bike for their clients.
 
 ##Pull the repository
 
 ```
-docker pull bikebike/bikebinder
+docker pull bikebike/bike-database
 ```
 
 
@@ -19,7 +19,7 @@ Publish the container's port to the host:
 
 
 ```
-docker run -d -p 3000:3000 --name="freehub" bikebike/bikebinder
+docker run -d -p 3000:3000 --name=bike-database" bikebike/bikedatabase
 ```
 
 ##Password
