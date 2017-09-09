@@ -1,0 +1,33 @@
+version: '2'
+
+# git clone https://github.com/Loos/bike-database.git 
+# docker-compose run  -w /app vtracklery2 env
+
+# You can visit http://vtracklery.wvcompletestreets.org/api/workers/ and observe json data:  user: admin password: password
+
+services:
+  bike-database: 
+    container_name: bike-database
+    build: . 
+    network_mode: "bridge"
+    restart: always
+    volumes:
+      - data:/app/db
+    expose:
+      - "3000"
+    command: bundle exec rails s -b 0.0.0.0 -p 3000
+    environment:
+      - PORT=3000
+      - VIRTUAL_HOST=bike-database.bikelover.org
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_HOST=bike-database.bikelover.org
+      - LETSENCRYPT_EMAIL="bike@bikelover.org"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  data:
+
