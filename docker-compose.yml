@@ -1,9 +1,10 @@
 version: '2'
 
 # git clone https://github.com/Loos/bike-database.git 
-# docker-compose run  -w /app vtracklery2 env
-
-# You can visit http://vtracklery.wvcompletestreets.org/api/workers/ and observe json data:  user: admin password: password
+#
+# The environment is setup to use jwilder/nginx-proxy and
+# JrCs/docker-letsencrypt-nginx-proxy-companion but can easily be
+# modified to be served by an alternative http server.
 
 services:
   bike-database: 

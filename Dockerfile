@@ -1,22 +1,26 @@
 #################
 # Bike Database #
 #################
-# Password is password for staff@freeridepgh.org & volunteer@freeridepgh.org
+# Password is password for 
 
-FROM bikebike/bikebike:16.04
+FROM ruby:2.3.1 
 MAINTAINER Jonathan Rosenbaum <gnuser@gmail.com>
 
-RUN git clone https://github.com/Loos/bike-database.git 
-RUN gem install bundler
-RUN apt-get update && apt-get -y install g++ libfcgi-dev libsqlite3-dev libpq-dev nodejs 
-COPY Gemfile /bike-database/ 
-RUN bundle install --gemfile=/bike-database/Gemfile
-COPY database.yml /bike-database/config/
-RUN cd /bike-database; bundle exec rake db:create db:migrate 
+WORKDIR /app
+RUN git clone https://github.com/Loos/bike-database.git .
+#RUN apt-get update && apt-get -y install g++ libfcgi-dev libsqlite3-dev libpq-dev nodejs 
 
-# setup to use sqlite3
-COPY  bike-database.conf /etc/supervisor/conf.d/
+RUN apt-get update && apt-get -y install  libsqlite3-0 nodejs
 
-CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+COPY Gemfile /app 
+COPY seeds.rb /app/db
+RUN env NOKOGIRI_USE_SYSTEM_LIBRARIES=true bundle install --gemfile=/app/Gemfile 
+COPY database.yml /app/config/
+RUN bundle exec rake db:create db:migrate db:setup
 
-# docker run -d -p 3000:3000 --name="bike-database" bikebike/bike-database
+
+#CMD rails server -b 0.0.0.0 -p 3000
+CMD rails s
+
+
+
