@@ -10,6 +10,7 @@ services:
   bike-database: 
     container_name: bike-database
     build: . 
+    image: bike-database
     network_mode: "bridge"
     restart: always
     volumes:
